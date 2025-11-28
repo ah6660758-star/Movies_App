@@ -7,7 +7,7 @@ abstract class RouterManager {
     switch (settings.name) {
       case RoutesManager.mainLayout:
         {
-          return CupertinoPageRoute(builder: (context) => const HomeScreen());
+          return CupertinoPageRoute(builder: (context) => HomeScreen());
         }
     }
   }
