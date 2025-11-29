@@ -1,0 +1,111 @@
+import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+
+import 'onboarding_page.dart';
+
+class OnboardingScreen extends StatefulWidget {
+  static const String routeName = "/";
+  @override
+  _OnboardingScreenState createState() => _OnboardingScreenState();
+}
+
+class _OnboardingScreenState extends State<OnboardingScreen> {
+  int _currentIndex = 0;
+  final CarouselSliderController _carouselController =
+  CarouselSliderController();
+
+  final List<Map<String, String>> onboardingData = [
+    {
+      "image": "assets/images/Movies Posters.png",
+      "cover": "",
+      "title": "Find Your Next Favorite Movie Here",
+      "description":
+      " Get access to a huge library of movies to suit all tastes. You will surely like it.",
+      "button": "Explore Now"
+    },
+    {
+      "image": "assets/images/onboarding_1.png",
+      "cover": "assets/images/cover1.png",
+      "title": "Discover Movies",
+      "description":
+      "Explore a vast collection of movies in all qualities and genres. Find your next favorite film with ease.",
+      "button": "Next"
+    },
+    {
+      "image": "assets/images/onboarding_2.png",
+      "cover": "assets/images/cover2.png",
+      "title": "Explore All Genres",
+      "description":
+      "Discover movies from every genre, in all available qualities. Find something new and exciting to watch every day.",
+      "button": "Next"
+    },
+    {
+      "image": "assets/images/onboarding_3.png",
+      "cover": "assets/images/cover3.png",
+      "title": "Create Watchlists",
+      "description":
+      "Save movies to your watchlist to keep track of what you want to watch next. Enjoy films in various qualities and genres.",
+      "button": "Next"
+    },
+    {
+      "image": "assets/images/onboarding_4.png",
+      "cover": "assets/images/cover4.png",
+      "title": "Rate, Review, and Learn",
+      "description":
+      "Share your thoughts on the movies you've watched. Dive deep into film details and help others discover great movies with your reviews.",
+      "button": "Next"
+    },
+    {
+      "image": "assets/images/onboarding_5.png",
+      "cover": "assets/images/cover5.png",
+      "title": "Start Watching Now",
+      "description": "",
+      "button": "Finish"
+    },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: CarouselSlider(
+        carouselController: _carouselController,
+        options: CarouselOptions(
+          height: MediaQuery.of(context).size.height * 1,
+          autoPlay: false,
+          enableInfiniteScroll: false,
+          viewportFraction: 1,
+          onPageChanged: (index, reason) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+        ),
+        items: onboardingData.map((item) {
+          return OnboardingPage(
+            image: item["image"]!,
+            cover: item["cover"]!,
+            title: item["title"]!,
+            description: item["description"]!,
+            buttonText: item["button"]!,
+            onNextButton: () {
+              if (_currentIndex < onboardingData.length - 1) {
+                _carouselController.nextPage();
+              } else {
+                //
+              }
+            },
+            onBackButton: () {
+              if (_currentIndex > 0) {
+                _carouselController.previousPage();
+              }
+            },
+            isLast: _currentIndex == onboardingData.length - 1,
+            onboardingOne: _currentIndex == 1,
+            firstScreen: _currentIndex == 0,
+          );
+        }).toList(),
+      ),
+    );
+  }
+}
