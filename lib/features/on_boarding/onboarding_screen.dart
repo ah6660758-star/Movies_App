@@ -48,7 +48,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       "button": "Next"
     },
     {
-      "image": "assets/images/onboarding_5.png",
+      "image": "assets/images/onboarding_4.png",
       "cover": "assets/images/cover4.png",
       "title": "Rate, Review, and Learn",
       "description":
@@ -56,7 +56,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       "button": "Next"
     },
     {
-      "image": "assets/images/onboarding_4.png",
+      "image": "assets/images/onboarding_5.png",
       "cover": "assets/images/cover5.png",
       "title": "Start Watching Now",
       "description": "",
